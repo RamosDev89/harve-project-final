@@ -1,10 +1,11 @@
-import mysql from 'mysql2/promise';
+const mysql = require("mysql2/promise");
 
 // Cria a conexão (pool). As definições específicadas do "createPool" são as predefinições padrões
 const database = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  database: 'test',
+  host: "localhost",
+  user: "root",
+  database: "harve_quizz",
+  password: "Mostardman469",
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10, // Máximo de conexões inativas; o valor padrão é o mesmo que "connectionLimit"
@@ -14,5 +15,4 @@ const database = mysql.createPool({
   keepAliveInitialDelay: 0,
 });
 
-
-module.exports = {database};
+module.exports = { database };
