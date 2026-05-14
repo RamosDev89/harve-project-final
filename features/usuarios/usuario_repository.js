@@ -1,16 +1,12 @@
-import {database} from '../../config/database.js';
+const { database } = require("../../config/database");
 
+const criarUsuarioRepository = async (usuario) => {
+  const results = await database
+    .query("INSERT INTO usuarios (nome, email) VALUES (?, ?)", [
+      usuario.nome,
+      usuario.email,
+    ])
+    return results[0].insertId;
+};
 
-const NOME_TABELA = 'usuarios';
-
-const criarUsuario = async(usuario) => {
-
-
-  try {
-    const [results]= awaitdatabase.execute(`INSERT INTO ${NOME_TABELA} (nome, email) VALUES (?, ?)`, [usuario.nome, usuario.email]);
-    console.log(`Usuário criado com sucesso: ${results.insertId}`);
-  } catch (error) {
-    console.log(`Erro ao criar usuário com email ${usuario.email}:`, error);
-  }
-  
-}
+module.exports = { criarUsuarioRepository };
